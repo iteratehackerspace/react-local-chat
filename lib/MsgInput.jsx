@@ -10,8 +10,17 @@ class MsgInput extends React.Component {
     this.click_handler = this.click_handler.bind(this);
   }
 
-  click_handler() {
-
+   async click_handler(event) {
+    let req_opts = {
+      method:'post',
+      mode: 'no-cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({'msg':'123'})
+    };
+    await fetch('http://localhost:8000/message', req_opts);
   }
 
   render() {
