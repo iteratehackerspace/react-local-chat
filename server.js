@@ -26,7 +26,8 @@ const server = http.createServer((req, res) => {
 			}).on('end', function() {
 				body = Buffer.concat(body).toString();
 				let objectify = JSON.parse(body);
-				messageHistory.push(objectify.msg);			
+				messageHistory.push(objectify.msg);	
+				console.log(messageHistory);		
 				res.end();
 			});
 		case '/all_messages':
@@ -37,9 +38,5 @@ const server = http.createServer((req, res) => {
 	}
 
 });
-
-
-
-
 
 server.listen(8000);
