@@ -8,8 +8,10 @@ class MsgInput extends React.Component {
   constructor(){
     super();
     this.click_handler = this.click_handler.bind(this);
+    this.form_changed = this.form_changed.bind(this);
+    this.state = {msg : ''};
   }
-
+  
    async click_handler(event) {
     let req_opts = {
       method:'post',
@@ -18,9 +20,14 @@ class MsgInput extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body:JSON.stringify({'msg':'123'})
+      body:JSON.stringify({'msg':this.state.msg})
     };
     await fetch('http://localhost:8000/message', req_opts);
+  }
+
+  form_changed (e) {
+    const letter = e.currentTarget.value;
+    this.setState({msg:letter});
   }
 
   render() {
@@ -38,11 +45,12 @@ class MsgInput extends React.Component {
       bottom: "0",
       width: "90%"
     }
-
+//
     return (
       <div style = {msgDivStyle}>
-        <input type = "text" placeholder = "Write your message here">
-        </input>
+        <input type="text"
+                onChange={this.form_changed}
+                value={this.state.msg}/>
         <button style = {msgButtonStyle} onClick = {this.click_handler}>
 	        Send
         </button>
