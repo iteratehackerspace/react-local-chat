@@ -1,0 +1,38 @@
+{
+  "name": "iterate-chat-app",
+  "version": "0.0.1",
+  "description": "a-react-chat-app",
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-3"
+    ],
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-async-to-generator",
+      "transform-runtime"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-plugin-transform-async-to-generator": "6.8.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.8.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-3": "^6.11.0",
+    "webpack": "^1.13.2"
+  },
+  "scripts": {
+    "compile_front_end": "mkdir -p dist && babel lib --out-dir dist",
+    "bundle_front_end": "webpack --progress --colors dist/chat.js public/bundle.js",
+    "front_end": "npm run compile_front_end && npm run bundle_front_end"
+  },
+  "author": "Edgar Aroutiounian <edgar.factorial@gmail.com>",
+  "license": "MIT"
+}

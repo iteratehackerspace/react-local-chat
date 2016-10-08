@@ -1,0 +1,21 @@
+{
+  "libs": [
+    "browser"
+  ],
+  "loadEagerly":[
+    "node_modules/react-dom/dist/react-dom.js",
+    "node_modules/react/dist/react.js",
+    "node_modules/react-dom/dist/react-dom.js",
+    "node_modules/react-dom/dist/react-dom-server.js",
+    "node_modules/moment/moment.js",
+    "node_modules/whatwg-fetch/fetch.js"
+  ],
+  "plugins": {
+    "node": { },
+    "requirejs" : { },
+    "es_modules" : { },
+    "doc_comment": { "fullDocs": true },
+    "complete_strings": {},
+    "lint": {}
+  }
+}
