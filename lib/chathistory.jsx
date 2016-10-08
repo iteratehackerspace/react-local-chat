@@ -9,11 +9,6 @@ class ChatHistory extends React.Component {
     super();
   }
 
-  getHostory() {
-      
-  }
-
-
   render() {
     let styles = {listStyleType: 'none', width: '5%'};
     let listyle = {display: 'block', backgroundColor: '#36d1f7', borderRadius: '15px',
