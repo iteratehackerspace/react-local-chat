@@ -3,13 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
+import StatusBar from './statusBar';
 class ChatApp extends React.Component {
 
   render() {
     return (
       <div>
-	Hello World
-  <MsgInput />
+       <MsgInput />
       </div>
     );
   }
