@@ -11,7 +11,7 @@ class MsgInput extends React.Component {
     this.form_changed = this.form_changed.bind(this);
     this.state = {msg : ''};
   }
-  
+
    async click_handler(event) {
     let req_opts = {
       method:'post',
@@ -38,7 +38,7 @@ class MsgInput extends React.Component {
       textAlign: 'center',
       textDecoration: 'none',
       display: 'inline-block',
-      fontSize: '20'}
+      fontSize: '20px'}
 
     let msgDivStyle = {
       position: "fixed",

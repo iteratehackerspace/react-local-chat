@@ -11,8 +11,8 @@ const server = http.createServer((req, res) => {
 			res.end(`${++currentUsers}`)
 			break;
 		case '/disconnect':
-			if (currentUsers === 0) 
-				res.end() 
+			if (currentUsers === 0)
+				res.end()
 			else
 				res.end(`${--currentUsers}`)
 			break;
@@ -26,13 +26,15 @@ const server = http.createServer((req, res) => {
 			}).on('end', function() {
 				body = Buffer.concat(body).toString();
 				let objectify = JSON.parse(body);
-				messageHistory.push(objectify.msg);	
-				console.log(messageHistory);		
+				messageHistory.push(objectify.msg);
+				console.log(messageHistory);
 				res.end();
 			});
+			break;
 		case '/all_messages':
 			let payload = {'payload': messageHistory}
 			res.end(JSON.stringify(payload));
+			break;
 		default: res.end();
 
 	}
