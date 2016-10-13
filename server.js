@@ -1,12 +1,24 @@
 'use strict';
 
 const http = require('http');
+const fs = require('fs');
+
 let currentUsers = 0;
 let messageHistory = [];
 
 
 const server = http.createServer((req, res) => {
 	switch (req.url) {
+		case '/':
+			fs.readFile('public/index.html', (err, data) => {
+				res.end(data.toString());
+			});
+			break;
+		case '/bundle.js':
+			fs.readFile('public/bundle.js', (err, data) => {
+				res.end(data.toString());
+			});
+			break;
 		case '/connected':
 			res.end(`${++currentUsers}`)
 			break;
@@ -27,7 +39,6 @@ const server = http.createServer((req, res) => {
 				body = Buffer.concat(body).toString();
 				let objectify = JSON.parse(body);
 				messageHistory.push(objectify.msg);
-				console.log(messageHistory);
 				res.end();
 			});
 			break;
@@ -38,7 +49,6 @@ const server = http.createServer((req, res) => {
 		default: res.end();
 
 	}
-
 });
 
 server.listen(8000);
