@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
-//import StatusBar from './statusBar';
+import StatusBar from './StatusBar';
 import ChatHistory from './chathistory';
 
 import {server_addr} from './globals';
@@ -30,6 +30,7 @@ class ChatApp extends React.Component {
   render() {
     return (
       <div>
+        <StatusBar />
         <ChatHistory
           messages={this.state.msgs}
           />
