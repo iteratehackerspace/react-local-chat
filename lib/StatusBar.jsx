@@ -1,5 +1,6 @@
 "use strict";
-import React from "react"
+
+import React from "react";
 import {server_addr} from './globals';
 
 export default
@@ -17,7 +18,7 @@ class StatusBar extends React.Component{
     if (users != this.state.usersNumber)
       this.setState({usersNumber: users});
 
-  }, 500);
+  }, 4000);
 }
 
 

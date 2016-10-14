@@ -15,7 +15,9 @@ class ChatApp extends React.Component {
     this.state = {msgs : []};
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+
+    await fetch(`${server_addr}/connected`);
 
     setInterval(async () => {
       let request = server_addr + '/all_messages';
