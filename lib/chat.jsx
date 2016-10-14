@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
-import StatusBar from './statusBar';
+//import StatusBar from './statusBar';
 import ChatHistory from './chathistory';
 
 class ChatApp extends React.Component {
@@ -18,7 +18,7 @@ class ChatApp extends React.Component {
     setInterval(async () => {
       console.log('Called');
   
-      let messageHistory = await fetch('http://192.168.1.216:8000/all_messages');
+      let messageHistory = await fetch('http://iteratechat.mybluemix.net/all_messages');
       let all_history = await messageHistory.json();
       this.setState({msgs: all_history.payload});
     }, 500);

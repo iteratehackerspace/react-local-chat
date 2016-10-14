@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import React from 'react';
 
@@ -7,7 +7,7 @@ export default
 class ChatHistory extends React.Component {
   constructor() {
     super();
-    this.state = {msgs : []}
+    this.state = {msgs : []};
   }
 
   render() {

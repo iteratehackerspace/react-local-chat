@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,7 +22,7 @@ class MsgInput extends React.Component {
       }),
       body:JSON.stringify({'msg':this.state.msg})
     };
-    await fetch('http://192.168.1.216:8000/message', req_opts);
+    await fetch('http://iteratechat.mybluemix.net/message', req_opts);
     this.props.updater(this.state.msg);
     this.setState({msg: ''});
 
@@ -41,13 +41,13 @@ class MsgInput extends React.Component {
       textAlign: 'center',
       textDecoration: 'none',
       display: 'inline-block',
-      fontSize: '20px'}
+      fontSize: '20px'};
 
     let msgDivStyle = {
       position: "fixed",
       bottom: "0",
       width: "90%"
-    }
+    };
 //
     return (
       <div style = {msgDivStyle}>
