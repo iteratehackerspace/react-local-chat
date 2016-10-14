@@ -11,9 +11,20 @@ class ChatHistory extends React.Component {
   }
 
   render() {
-    let styles = {listStyleType: 'none', width: '5%'};
-    let listyle = {display: 'block', backgroundColor: '#36d1f7', borderRadius: '15px',
-                    color: '#f6fdff', margin: '5px', width: '100%', textAlign: 'center', resize: 'horizontal'};
+    let styles = {
+      display: 'inline-flex',
+      flexDirection: 'column',
+       width: '90%'
+     };
+    let listyle = {
+
+      backgroundColor: '#36d1f7',
+      borderRadius: '5px',
+      color: '#f6fdff',
+      margin: '.25rem',
+      padding: '.25rem',
+      width: '100%',
+    };
 
     let messageList = this.props.messages.map(function(message) {
       return (
