@@ -6,6 +6,8 @@ import MsgInput from './MsgInput';
 //import StatusBar from './statusBar';
 import ChatHistory from './chathistory';
 
+import {server_addr} from './globals';
+
 class ChatApp extends React.Component {
 
   constructor() {
@@ -17,8 +19,9 @@ class ChatApp extends React.Component {
 
     setInterval(async () => {
       console.log('Called');
-  
-      let messageHistory = await fetch('http://iteratechat.mybluemix.net/all_messages');
+      let request = server_addr + '/all_messages';
+      console.log(request);
+      let messageHistory = await fetch(request);
       let all_history = await messageHistory.json();
       this.setState({msgs: all_history.payload});
     }, 500);
