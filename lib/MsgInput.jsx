@@ -43,7 +43,7 @@ class MsgInput extends React.Component {
     let sendMsgButton = {
       backgroundColor: '#4CAF50',
       border: 'none',
-      width: '90%',
+      width: '100%',
       height: '1.5rem',
       color: 'white',
       margin: '.25rem',
@@ -53,30 +53,39 @@ class MsgInput extends React.Component {
 
     let msgContainer = {
       display: 'inline',
+      postition: 'fixed',
       flexDirection: 'column',
       width: '100%',
+      height: '100%',
       postition: 'fixed',
-      bottom: '0px'
+      bottom: '0px',
+      left: '0px'
 
     };
+
     let textInput = {
       display: 'flex',
       justifyContent: 'center',
-      width: '90%',
+      width: '100%',
       height: '1rem'
-
-
     };
+
+    let toolbarContainer = {
+      margin: '0px auto',
+      maxWidth: '980px'
+    }
 //
     return (
       <div style = {msgContainer}>
-        <input type="text"
-                style={textInput}
-                onChange={this.form_changed}
-                value={this.state.msg} onKeyDown = {this.click_handler} />
-        <button style = {sendMsgButton} onClick = {this.click_handler}>
-	        Send
-        </button>
+        <div style = {toolbarContainer}>
+          <input type={"text"}
+                  style={textInput}
+                  onChange={this.form_changed}
+                  value={this.state.msg} onKeyDown = {this.click_handler} />
+          <button style = {sendMsgButton} onClick = {this.click_handler}>
+  	        Send
+          </button>
+        </div>
       </div>
     );
   }

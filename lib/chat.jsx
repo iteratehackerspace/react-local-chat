@@ -28,8 +28,13 @@ class ChatApp extends React.Component {
 
 
   render() {
+    let main_container = {
+      width: '950px',
+      height: '350px',
+      margin: '0px auto'
+    };
     return (
-      <div>
+      <div style = {main_container}>
         <StatusBar />
         <ChatHistory
           messages={this.state.msgs}
