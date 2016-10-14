@@ -39,27 +39,43 @@ class MsgInput extends React.Component {
   }
 
   render() {
-    let msgButtonStyle = {
+    let sendMsgButton = {
       backgroundColor: '#4CAF50',
       border: 'none',
+      width: '90%',
+      height: '1.5rem',
       color: 'white',
-      textAlign: 'center',
-      textDecoration: 'none',
-      display: 'inline-block',
-      fontSize: '20px'};
+      margin: '.25rem',
+      justifyContent: 'center',
+      borderRadius: '5px'
+    };
 
-    let msgDivStyle = {
-      position: "fixed",
-      bottom: "0",
-      width: "90%"
+    let msgContainer = {
+      display: 'inline',
+      flexDirection: 'column',
+      width: '100%',
+      postition: 'fixed',
+      bottom: '0px'
+
+    };
+    let textInput = {
+      display: 'flex',
+      justifyContent: 'center',
+      width: '90%',
+      height: '1rem'
+
+
     };
 //
     return (
-      <div style = {msgDivStyle}>
+      <div style = {msgContainer}>
         <input type="text"
+                style={textInput}
                 onChange={this.form_changed}
                 value={this.state.msg}/>
-              <button style = {msgButtonStyle} onClick = {this.click_handler} onKeyDown = {this.click_handler}>
+              <button style = {sendMsgButton}
+                onClick = {this.click_handler}
+                onKeyDown = {this.click_handler}>
 	        Send
         </button>
       </div>
