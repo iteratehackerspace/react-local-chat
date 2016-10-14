@@ -2,9 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {server_addr} from './globals';
+
 export default
 class MsgInput extends React.Component {
-
   constructor(){
     super();
     this.click_handler = this.click_handler.bind(this);
@@ -14,6 +15,7 @@ class MsgInput extends React.Component {
   }
 
    async click_handler(event) {
+    console.log('event');
     let req_opts = {
       method:'post',
       headers: new Headers({
@@ -22,11 +24,14 @@ class MsgInput extends React.Component {
       }),
       body:JSON.stringify({'msg':this.state.msg})
     };
-    await fetch('http://iteratechat.mybluemix.net/message', req_opts);
+    let request = server_addr + '/message'
+    await fetch(request, req_opts);
     this.props.updater(this.state.msg);
     this.setState({msg: ''});
 
   }
+
+
 
   form_changed (e) {
     const letter = e.currentTarget.value;
@@ -54,7 +59,7 @@ class MsgInput extends React.Component {
         <input type="text"
                 onChange={this.form_changed}
                 value={this.state.msg}/>
-        <button style = {msgButtonStyle} onClick = {this.click_handler} >
+              <button style = {msgButtonStyle} onClick = {this.click_handler} onKeyDown = {this.click_handler}>
 	        Send
         </button>
       </div>
