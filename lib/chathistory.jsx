@@ -14,8 +14,12 @@ class ChatHistory extends React.Component {
     let styles = {
       display: 'inline-flex',
       flexDirection: 'column',
-       width: '90%'
-     };
+      width: '90%',
+      overflowY: 'scroll',
+      overflowX: 'hidden',
+      height: '1000px',
+      margin: '0'
+    };
     let listyle = {
 
       backgroundColor: '#36d1f7',

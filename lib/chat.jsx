@@ -18,9 +18,7 @@ class ChatApp extends React.Component {
   componentDidMount() {
 
     setInterval(async () => {
-      console.log('Called');
       let request = server_addr + '/all_messages';
-      console.log(request);
       let messageHistory = await fetch(request);
       let all_history = await messageHistory.json();
       this.setState({msgs: all_history.payload});

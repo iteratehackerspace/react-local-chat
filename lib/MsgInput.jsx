@@ -15,19 +15,20 @@ class MsgInput extends React.Component {
   }
 
    async click_handler(event) {
-    console.log('event');
-    let req_opts = {
-      method:'post',
-      headers: new Headers({
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }),
-      body:JSON.stringify({'msg':this.state.msg})
-    };
-    let request = server_addr + '/message'
-    await fetch(request, req_opts);
-    this.props.updater(this.state.msg);
-    this.setState({msg: ''});
+    if(event.button == 0 || event.key == 'Enter') {
+      let req_opts = {
+        method:'post',
+        headers: new Headers({
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }),
+        body:JSON.stringify({'msg':this.state.msg})
+      };
+      let request = server_addr + '/message'
+      await fetch(request, req_opts);
+      this.props.updater(this.state.msg);
+      this.setState({msg: ''});
+  }
 
   }
 
@@ -72,10 +73,8 @@ class MsgInput extends React.Component {
         <input type="text"
                 style={textInput}
                 onChange={this.form_changed}
-                value={this.state.msg}/>
-              <button style = {sendMsgButton}
-                onClick = {this.click_handler}
-                onKeyDown = {this.click_handler}>
+                value={this.state.msg} onKeyDown = {this.click_handler} />
+        <button style = {sendMsgButton} onClick = {this.click_handler}>
 	        Send
         </button>
       </div>
