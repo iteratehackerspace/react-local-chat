@@ -12,8 +12,7 @@ class ChatHistory extends React.Component {
     this.state = {msgs : []};
   }
 
-  
-  componentWillReceiveProps(_) {
+  componentDidUpdate(prev, next) {
     const panel = this.refs.chat_container;
     if (panel.lastChild) panel.lastChild.scrollIntoView();
   }
