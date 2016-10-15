@@ -50,59 +50,28 @@ class MsgInput extends React.Component {
   }
 
   render() {
-    let sendMsgButton = {
-      backgroundColor: '#4CAF50',
-      border: 'none',
-      width: '90%',
-      height: '1.5rem',
-      color: 'white',
-      margin: '.25rem',
-      justifyContent: 'center',
-      borderRadius: '5px'
-    };
-    let msgContainer = {
-      display: 'inline',
-      flexDirection: 'column',
-      width: '100%',
-      postition: 'fixed',
-      bottom: '0px'
-    };
-    let textInput = {
-      display: 'flex',
-      justifyContent: 'center',
-      width: '90%',
-      height: '1rem'
-    };
-    let setNameButton = {
-      backgroundColor: '#4CAF50',
-      border: 'none',
-      width: '50',
-      color: 'white',
-      borderRadius: '5px'
-    };
-
     return (
       <div>
         <table>
-          <tr>
-            <td>
-              <input type="text"
-                     onChange={this.form_changed2}
-                     value = {this.state.username}
-                     style={textInput}
-                     placeholder='Your Name' />
-            </td>
-            <td>
-              <input type="text"
-                     style={textInput}
-                     onChange={this.form_changed}
-                     value={this.state.msg}
-                     onKeyDown = {this.click_handler}
-                     placeholder='Message' />
-            </td>
-          </tr>
+	  <tbody>
+            <tr>
+              <td>
+		<input type="text"
+                       onChange={this.form_changed2}
+                       value = {this.state.username}
+                       placeholder='Your Name' />
+              </td>
+              <td>
+		<input type="text"
+                       onChange={this.form_changed}
+                       value={this.state.msg}
+                       onKeyDown = {this.click_handler}
+                       placeholder='Message' />
+              </td>
+            </tr>
+	  </tbody>
         </table>
-        <button style = {sendMsgButton} onClick = {this.click_handler}>
+        <button onClick={this.click_handler}>
 	  Send
         </button>
       </div>
