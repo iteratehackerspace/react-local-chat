@@ -92,17 +92,46 @@ class ChatApp extends React.Component {
 	width: '85%'
       }
     };
-    const message_input_style = {
-      button:{
-	backgroundColor: '#4CAF50',
-	border: 'none',
-	height: '1.5rem',
-	color: 'white',
-	margin: '.25rem',
-	justifyContent: 'center',
-	borderRadius: '5px'
-      }
+    const button_style = {
+    	backgroundColor: '#4CAF50',
+    	border: 'none',
+    	height: '1.5rem',
+    	color: 'white',
+    	margin: '.25rem',
+    	justifyContent: 'center',
+    	borderRadius: '5px',
+      width: '100%'
     };
+    const name_input={
+      fontFamily: 'sans-serif',
+      width: '7.5%',
+      paddingLeft: '5px',
+      transition: 'box-shadow 0.3s, border 0.3s',
+      border: 'solid 1px #707070',
+      fontSize: '12px',
+      boxShadow: '0 0 5px 1px #969696'
+    }
+    const message_input={
+      width:'100%',
+      display: 'block',
+      fontFamily: 'sans-serif',
+      fontSize: '18px',
+      paddingLeft: '5px',
+      border: 'solid 1px #dcdcdc',
+      transition: 'box-shadow 0.3s, border 0.3s',
+      border: 'solid 1px #707070',
+      boxShadow: '0 0 5px 1px #969696'
+    }
+    // const task_window_style = {
+    //     width: '950px',
+    //     height: '350px',
+    //     margin: 'auto',
+    //     backgroundColor: '#01409c',
+    //     color: 'white',
+    //     fontSize: '20px',
+    //     textAlign: 'center',
+    //     borderRadius: '40px'
+    // };
     return (
       <div style={main_container}>
         <StatusBar my_style={status_bar_style}/>
@@ -111,7 +140,9 @@ class ChatApp extends React.Component {
 	  messages={this.state.msgs}
 	  />
         <MsgInput
-	  my_style={message_input_style}
+	  my_style={button_style}
+    name_style={name_input}
+    message_style={message_input}
 	  send_message={msg => this.conn.send(JSON.stringify({
 	    cmd:'new_message',
 	    payload:msg
@@ -120,7 +151,7 @@ class ChatApp extends React.Component {
       </div>
     );
   }
-  
+
 };
 
 ReactDOM.render(<ChatApp />,

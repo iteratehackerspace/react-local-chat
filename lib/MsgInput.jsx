@@ -41,26 +41,18 @@ class MsgInput extends React.Component {
   render() {
     return (
       <div>
-        <table>
-	  <tbody>
-            <tr>
-              <td>
 		<input type="text"
                        onChange={this.form_changed2}
                        value = {this.state.username}
-                       placeholder='Your Name' />
-              </td>
-              <td>
+                       placeholder='Your Name'
+                       style = {this.props.name_style} />
 		<input type="text"
                        onChange={this.form_changed}
                        value={this.state.msg}
                        onKeyDown = {this.click_handler}
-                       placeholder='Message' />
-              </td>
-            </tr>
-	  </tbody>
-        </table>
-        <button onClick={this.click_handler}>
+                       placeholder='Message'
+                       style = {this.props.message_style} />
+    <button onClick={this.click_handler} style={this.props.my_style}>
 	  Send
         </button>
       </div>
