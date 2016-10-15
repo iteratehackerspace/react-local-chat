@@ -15,27 +15,16 @@ class MsgInput extends React.Component {
     this.state = {msg : '', username: ''};
   }
 
-  async click_handler(event) {
-    if ((event.button === 0 || event.key == 'Enter') &&
-	this.state.msg !== '') {
+  click_handler(event) {
+    if ((event.button === 0 ||
+	 event.key == 'Enter') &&
+	this.state.msg !== '' && this.state.username !== '') {
       let now = (new Date()).toLocaleTimeString();
-      let new_message =
-	  `${this.state.username}[${now}]:${this.state.msg}`;
-      let req_opts = {
-        method:'post',
-        headers: new Headers({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }),
-        body:JSON.stringify({
-	  'msg':new_message
-	})
-      };
-      let request = server_addr + '/message';
-      
-      await fetch(request, req_opts);
-      this.props.updater(this.state.msg);
-      this.setState({msg: '', username : this.state.username});
+      let new_message = `${this.state.username}[${now}]:${this.state.msg}`;
+
+      this.props.send_message(new_message);
+      this.props.updater(new_message);
+      this.setState({username:this.state.username, msg:''});
     }
   }
 

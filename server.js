@@ -1,57 +1,71 @@
 'use strict';
 
-const http = require('http');
-const fs = require('fs');
+const http = require('http'),
+      fs = require('fs'),
+      WebSocketServer = require('ws').Server;
 
 let currentUsers = 0;
 let messageHistory = [];
 
-const port = 8000;
+const port = 8080;
 
+// Basic HTTP server
 const server = http.createServer((req, res) => {
   switch (req.url) {
   case '/':
-    fs.readFile('public/index.html', (err, data) => {
-      res.end(data.toString());
-    });
+    fs.readFile('public/index.html',
+		'utf-8',
+		(err, data) => res.end(data));
     break;
   case '/bundle.js':
-    fs.readFile('public/bundle.js', (err, data) => {
-      res.end(data.toString());
-    });
-    break;
-  case '/connected':
-    res.end(`${++currentUsers}`);
-    break;
-  case '/disconnect':
-    if (currentUsers === 0)
-      res.end();
-    else
-      res.end(`${--currentUsers}`);
-    break;
-  case '/users':
-    res.end(`${currentUsers}`);
-    break;
-  case '/message':
-    let body = [];
-    req.on('data', function(chunk) {
-      body.push(chunk);
-    }).on('end', function() {
-      body = Buffer.concat(body).toString();
-      let objectify = JSON.parse(body);
-      messageHistory.push(objectify.msg);
-      res.end();
-    });
-    break;
-  case '/all_messages':
-    let payload = {'payload': messageHistory};
-    res.end(JSON.stringify(payload));
+    fs.readFile('public/bundle.js',
+		'utf-8',
+		(err, data) => res.end(data));
     break;
   default: res.end();
-
   }
 });
 
-server.listen(port, () => {
-  console.log(`Server started on port:${port}, check localhost:${port}`);
+const ws_server = new WebSocketServer({server:server});
+
+ws_server.on('connection', ws => {
+  const payload = {
+    message_type:'initial_message_load',
+    payload: messageHistory
+  };
+
+  // Initial history
+  ws.send(JSON.stringify(payload));
+
+  ws.on('message', msg => {
+    const client_reply = JSON.parse(msg);
+
+    switch(client_reply.cmd) {
+
+    case 'connect':
+      currentUsers++; break;
+    case 'disconnect':
+      currentUsers--; break;
+    case 'user_count':
+      ws.send(JSON.stringify({reply:`${currentUsers}`}));
+      break;
+    case 'new_message':
+      messageHistory.push(client_reply.payload);
+      const send_me_off = JSON.stringify({
+	message_type:'new_chat_message',
+	payload:client_reply.payload
+      });
+      ws_server.clients.forEach(client => {
+	// if its not the sender, then send to everyone else
+	if (client !== ws) client.send(send_me_off);
+      });
+      break;
+    default:
+      console.error('Unknown command from the client');
+    }
+  });
 });
+
+server.listen(port, () =>
+	      console.log(`Server started on port:${port}, check localhost:${port}`)
+);

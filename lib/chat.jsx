@@ -6,40 +6,56 @@ import MsgInput from './MsgInput';
 import StatusBar from './StatusBar';
 import ChatHistory from './chathistory';
 
-import {server_addr} from './globals';
+import {server_addr, web_sock_addr} from './globals';
 
 class ChatApp extends React.Component {
 
   constructor() {
     super();
     this.state = {msgs : []};
+    this.conn = new WebSocket(web_sock_addr);
   }
 
-  async componentWillUnmount() {
-    await fetch(`${server_addr}/disconnect`);
+  componentWillUnmount() {
+    this.conn.send(JSON.stringify({
+      cmd:'disconnect'
+    }));
   }
 
-  async componentDidMount() {
+  componentDidMount() {
 
-    await fetch(`${server_addr}/connected`);
+    this.conn.onmessage = message => {
+      const reply = JSON.parse(message.data);
+      switch (reply.message_type) {
+      case 'initial_message_load':
+	this.setState({msgs:reply.payload});
+	break;
+      case 'new_chat_message':
+	this.setState({msgs:this.state.msgs.concat([reply.payload])});
+	break;
+      default:
+	console.error('Unknown message reply type from server');
+      }
+    };
 
-    setInterval(async () => {
-      let request = server_addr + '/all_messages';
-      let messageHistory = await fetch(request);
-      let all_history = await messageHistory.json();
-      this.setState({msgs: all_history.payload});
+    const initial_message_send_timer = setInterval(() => {
+      if (this.conn.readyState === 1) {
+	this.conn.send(JSON.stringify({
+	  cmd:'connect'
+	}));
+	clearInterval(initial_message_send_timer);
+      }
     }, 500);
-
   }
 
   render() {
-    let main_container = {
+    const main_container = {
       marginTop:'10px',
       width: '950px',
       height: '350px',
       margin: '0px auto'
     };
-    let status_bar_style = {
+    const status_bar_style = {
       color: '#00ff9f',
       textAlign:'center',
       borderRadius:'10px',
@@ -47,12 +63,12 @@ class ChatApp extends React.Component {
       marginLeft:'auto',
       marginRight:'auto'
     };
-    let chat_history_style = {
+    const chat_history_style = {
       container:{
 	marginLeft:'5px',
 	marginRight:'5px',
-	overflowY:'scroll',
-	height:'300px'
+	height:'90%',
+	overflowY:'scroll'
       },
       list_items:{
 	listStyleType:'none',
@@ -61,14 +77,13 @@ class ChatApp extends React.Component {
 	color: '#f6fdff',
 	margin:'0.5em auto',
 	padding: '.50rem',
-	width: '100%'
+	width: '85%'
       }
     };
-    let message_input_style = {
+    const message_input_style = {
       button:{
 	backgroundColor: '#4CAF50',
 	border: 'none',
-	width: '100%',
 	height: '1.5rem',
 	color: 'white',
 	margin: '.25rem',
@@ -85,9 +100,11 @@ class ChatApp extends React.Component {
 	  />
         <MsgInput
 	  my_style={message_input_style}
-          updater={
-	    (msg) => this.setState({msgs:this.state.msgs.concat([msg])})
-	  }
+	  send_message={msg => this.conn.send(JSON.stringify({
+	    cmd:'new_message',
+	    payload:msg
+	  }))}
+	  updater={msg => this.setState({msgs:this.state.msgs.concat([msg])})}
 	  />
       </div>
     );

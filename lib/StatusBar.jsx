@@ -12,14 +12,16 @@ class StatusBar extends React.Component{
   }
 
   componentDidMount(){
-    setInterval(async()=>{
-      const resp = await fetch(server_addr+"/users");
-      const users = await resp.json();
 
-      if (users != this.state.usersNumber)
-	this.setState({usersNumber: users});
+    // setInterval(async()=>{
+    //   const resp = await fetch(server_addr+"/users");
+    //   const users = await resp.json();
 
-    }, 4000);
+    //   if (users != this.state.usersNumber)
+    // 	this.setState({usersNumber: users});
+
+    // }, 4000);
+
   }
 
   render(){

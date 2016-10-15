@@ -4,7 +4,8 @@
   "description": "a-react-chat-app",
   "dependencies": {
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "ws": "^1.1.1"
   },
   "babel": {
     "presets": [
