@@ -20,10 +20,10 @@ class MsgInput extends React.Component {
 	 event.key == 'Enter') &&
 	this.state.msg !== '' && this.state.username !== '') {
       let now = (new Date()).toLocaleTimeString();
-      let new_message = `${this.state.username}[${now}]:${this.state.msg}`;
+      let new_message =
+	  `${this.state.username}[${now}]:${this.state.msg}`;
 
       this.props.send_message(new_message);
-      this.props.updater(new_message);
       this.setState({username:this.state.username, msg:''});
     }
   }

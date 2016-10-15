@@ -104,7 +104,6 @@ class ChatApp extends React.Component {
 	    cmd:'new_message',
 	    payload:msg
 	  }))}
-	  updater={msg => this.setState({msgs:this.state.msgs.concat([msg])})}
 	  />
       </div>
     );

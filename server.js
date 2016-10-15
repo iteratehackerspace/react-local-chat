@@ -56,8 +56,7 @@ ws_server.on('connection', ws => {
 	payload:client_reply.payload
       });
       ws_server.clients.forEach(client => {
-	// if its not the sender, then send to everyone else
-	if (client !== ws) client.send(send_me_off);
+	client.send(send_me_off);
       });
       break;
     default:
