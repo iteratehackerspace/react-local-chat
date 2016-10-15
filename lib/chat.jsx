@@ -51,7 +51,7 @@ class ChatApp extends React.Component {
     // Heart beat, to keep the web socket alive, web browser's
     // amazingly don't provide a spec for this
     setInterval(() => {
-      if (this.conn.readState === 1) {
+      if (this.conn.readyState === 1) {
 	this.conn.send(JSON.stringify({
 	  cmd:'ping'
 	}));
