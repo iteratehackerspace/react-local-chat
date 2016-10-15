@@ -105,10 +105,11 @@ class ChatApp extends React.Component {
 	    payload:msg
 	  }))}
 	  />
+  
       </div>
     );
   }
-  
+
 };
 
 ReactDOM.render(<ChatApp />,

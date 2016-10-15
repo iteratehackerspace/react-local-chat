@@ -50,6 +50,7 @@ class MsgInput extends React.Component {
                        value = {this.state.username}
                        placeholder='Your Name' />
               </td>
+              
               <td>
 		<input type="text"
                        onChange={this.form_changed}
