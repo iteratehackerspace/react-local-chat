@@ -59,6 +59,8 @@ ws_server.on('connection', ws => {
 	client.send(send_me_off);
       });
       break;
+      // Trivial case, just to keep the socket connection alive.
+    case 'ping': break;
     default:
       console.error('Unknown command from the client');
     }

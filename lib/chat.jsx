@@ -20,6 +20,7 @@ class ChatApp extends React.Component {
     this.conn.send(JSON.stringify({
       cmd:'disconnect'
     }));
+    this.conn.close();
   }
 
   componentDidMount() {
@@ -46,6 +47,17 @@ class ChatApp extends React.Component {
 	clearInterval(initial_message_send_timer);
       }
     }, 500);
+
+    // Heart beat, to keep the web socket alive, web browser's
+    // amazingly don't provide a spec for this
+    setInterval(() => {
+      if (this.conn.readState === 1) {
+	this.conn.send(JSON.stringify({
+	  cmd:'ping'
+	}));
+      }
+    }, 15 * 1000);
+
   }
 
   render() {
