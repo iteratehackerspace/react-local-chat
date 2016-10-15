@@ -27,7 +27,9 @@ class StatusBar extends React.Component{
       <div style={this.props.my_style}>
         <h1>
 	  <center>
-	    <em> iterate hackerspace </em>
+	    <em><a href={'https://iteratehackerspace.github.io'}>
+		iterate hackerspace</a>
+	    </em>
 	    programmers online: {this.state.usersNumber}
 	  </center>
 	</h1>
