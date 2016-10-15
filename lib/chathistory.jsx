@@ -26,7 +26,7 @@ class ChatHistory extends React.Component {
       color: '#f6fdff',
       margin: '.25rem',
       padding: '.25rem',
-      width: '100%',
+      width: '100%'
     };
 
     let messageList = this.props.messages.map(function(message) {
