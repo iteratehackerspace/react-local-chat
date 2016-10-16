@@ -18,12 +18,11 @@ class ChatHistory extends React.Component {
   }
 
   render() {
-
     let messageList = this.props.messages.map((message, idx) => {
       return (
         <li key={idx} style={this.props.my_style.list_items}>
-	  {message}
-	</li>
+	         {message}
+        </li>
       );
     });
 
