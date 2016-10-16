@@ -27,12 +27,27 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-3": "^6.11.0",
+    "eslint": "^3.8.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
     "webpack": "^1.13.2"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "installedESLint": true,
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ]
   },
   "scripts": {
     "compile_front_end": "mkdir -p dist && babel lib --out-dir dist",
     "bundle_front_end": "webpack --progress --colors dist/chat.js public/bundle.js",
-    "front_end": "npm run compile_front_end && npm run bundle_front_end"
+    "front_end": "npm run compile_front_end && npm run bundle_front_end",
+    "lint":"eslint lib/**"
   },
   "author": "Edgar Aroutiounian <edgar.factorial@gmail.com>",
   "license": "MIT"
