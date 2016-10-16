@@ -17,8 +17,8 @@ class StatusBar extends React.Component{
 	  <center>
 	    <a href={'https://iteratehackerspace.github.io'}>
   		<img style={this.props.my_style.logo}
-            src="https://ceremoniesbykatherine.files.wordpress.com/2013/10/logo-color.jpg"
-            width = "150"></img></a>
+            src={"https://ceremoniesbykatherine.files.wordpress.com/2013/10/logo-color.jpg"}
+            width = {"150"}></img></a>
           programmers online: {this.props.users}
 	  </center>
 	</h1>

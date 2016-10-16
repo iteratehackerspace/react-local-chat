@@ -15,13 +15,6 @@ class ChatApp extends React.Component {
     this.conn = new WebSocket(web_sock_addr);
   }
 
-  componentWillUnmount() {
-    this.conn.send(JSON.stringify({
-      cmd:'disconnect'
-    }));
-    this.conn.close();
-  }
-
   componentDidMount() {
 
     this.conn.onmessage = message => {
@@ -50,7 +43,7 @@ class ChatApp extends React.Component {
       }
     }, 500);
 
-    const users_count = setInterval(() => {
+    setInterval(() => {
       if (this.conn.readyState === 1) {
 	       this.conn.send(JSON.stringify({
 	          cmd:'user_count'
@@ -58,7 +51,6 @@ class ChatApp extends React.Component {
       }
     }, 4 * 1000);
   }
-
   render() {
     const main_container = {
       marginTop:'10px',
