@@ -17,6 +17,9 @@ const server = http.createServer((req, res) => {
 		'utf-8',
 		(err, data) => res.end(data));
     break;
+  case '/logo.png':
+    fs.readFile('public/logo.png', (err, data) => res.end(data));
+    break;
   case '/bundle.js':
     fs.readFile('public/bundle.js',
 		'utf-8',
