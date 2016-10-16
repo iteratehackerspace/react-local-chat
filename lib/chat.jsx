@@ -132,6 +132,8 @@ class ChatApp extends React.Component {
     //     textAlign: 'center',
     //     borderRadius: '40px'
     // };
+    const src_link =
+	  'https://github.com/iteratehackerspace/react-local-chat';
     return (
       <div style={main_container}>
         <StatusBar my_style={status_bar_style}/>
@@ -148,6 +150,11 @@ class ChatApp extends React.Component {
 	    payload:msg
 	  }))}
 	  />
+	  <div>
+	    <em>
+	      <a href={src_link}>Source code</a>
+	    </em>
+	  </div>
       </div>
     );
   }
