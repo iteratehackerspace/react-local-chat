@@ -47,7 +47,7 @@ webSocketServer.on('connection', (ws) => {
         currentUsers++; break;
       case 'user_count':
         ws.send(JSON.stringify({
-          users_count: `${currentUsers}`,
+          users_count: `${currentUsers > 0 ? currentUsers : 0}`,
           message_type: 'user_count',
         }));
         break;
