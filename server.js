@@ -48,7 +48,10 @@ ws_server.on('connection', ws => {
     case 'connect':
       currentUsers++; break;
     case 'user_count':
-      ws.send(JSON.stringify({users_count:`${currentUsers}`}));
+      ws.send(JSON.stringify({
+        users_count:`${currentUsers}`,
+        message_type: 'user_count'
+      }));
       break;
     case 'new_message':
       messageHistory.push(client_reply.payload);
@@ -60,10 +63,6 @@ ws_server.on('connection', ws => {
 	client.send(send_me_off);
       });
       break;
-      // Trivial case, just to keep the socket connection alive.
-    case 'ping': break;
-    default:
-      console.error('Unknown command from the client');
     }
   });
 
