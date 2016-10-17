@@ -1,5 +1,5 @@
 import React from 'react';
-import {serverAddress} from './globals';
+import { serverAddress } from './globals';
 
 export default
 class StatusBar extends React.Component {

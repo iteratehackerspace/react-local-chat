@@ -16,20 +16,20 @@ class ChatApp extends React.Component {
   componentDidMount() {
     this.conn.onmessage = (message) => {
       const reply = JSON.parse(message.data);
-        switch (reply.message_type) {
-          case 'user_count':
-            this.setState({ usersNumber: reply.users_count });
-            break;
-          case 'initial_message_load':
-            this.setState({ msgs: reply.payload });
-            break;
-          case 'new_chat_message':
-            this.setState({ msgs: this.state.msgs.concat([reply.payload]) });
-            break;
-          default:
-            console.error('Unknown message reply type from server');
-        }
-    }
+      switch (reply.message_type) {
+        case 'user_count':
+          this.setState({ usersNumber: reply.users_count });
+          break;
+        case 'initial_message_load':
+          this.setState({ msgs: reply.payload });
+          break;
+        case 'new_chat_message':
+          this.setState({ msgs: this.state.msgs.concat([reply.payload]) });
+          break;
+        default:
+          console.error('Unknown message reply type from server');
+      }
+    };
 
     const initialMessageSendTimer = setInterval(() => {
       if (this.conn.readyState === 1) {
