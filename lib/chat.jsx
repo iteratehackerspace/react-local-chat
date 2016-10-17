@@ -46,23 +46,50 @@ class ChatApp extends React.Component {
           cmd: 'user_count',
         }));
       }
-    }, 4 * 1000);
+    }, 10 * 1000);
   }
 
   render() {
+    const theBiggestContainer = {
+      backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/cd/Tatev_Monastery_from_a_distance.jpg')",
+      backgroundRepeat: 'repeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      height: '896px',
+    };
+    const programmersOnline = {
+      flexGrow: '1',
+      fontSize: '30px',
+      color: 'white',
+      padding: '14px 25px',
+      textAlign: 'center',
+      textDecoration: 'none',
+      display: 'inline-block',
+    };
+    const sourceCode = {
+      flexGrow: '1',
+      fontSize: '30px',
+      color: 'white',
+      padding: '14px 25px',
+      textAlign: 'center',
+      textDecoration: 'none',
+      display: 'inline-block',
+    };
     const mainContainer = {
       marginTop: '10px',
-      width: '950px',
-      height: '350px',
+      minWidth: '1024px',
+      height: '900px',
       margin: '0px auto',
+      width: '100%',
     };
     const statusBarStyle = {
       color: '#00ff9f',
       textAlign: 'center',
-      borderRadius: '10px',
-      backgroundColor: '#7e7a85',
-      margin: '10px auto',
-      postition: 'absolute',
+      backgroundColor: '#acb2ff',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'flex',
+      opacity: '0.7',
       logo: {
         postition: 'relative',
         left: '5px',
@@ -73,17 +100,20 @@ class ChatApp extends React.Component {
       container: {
         marginLeft: '5px',
         marginRight: '5px',
-        height: '90%',
+        height: '74%',
         overflowY: 'scroll',
       },
       list_items: {
         listStyleType: 'none',
-        backgroundColor: '#36d1f7',
-        borderRadius: '5px 5px',
-        color: '#f6fdff',
+        fontFamily: 'sans-serif',
+        fontSize: '18px',
+        color: 'white',
         margin: '0.5em auto',
         padding: '.50rem',
-        width: '85%',
+        minWidth: '30px',
+        maxWidth: '50%',
+        backgroundColor: '#6641a7',
+        opacity: '0.85',
       },
     };
 
@@ -126,33 +156,32 @@ class ChatApp extends React.Component {
     //     textAlign: 'center',
     //     borderRadius: '40px'
     // };
-    const sourceLink =
-    'https://github.com/iteratehackerspace/react-local-chat';
     return (
-      <div style={mainContainer}>
-        <StatusBar my_style={statusBarStyle} users={this.state.usersNumber} />
-        <ChatHistory
-          my_style={chatHistoryStyle}
-          messages={this.state.msgs}
-        />
-        <MsgInput
-          my_style={buttonStyle}
-          name_style={nameInput}
-          message_style={messageInput}
-          send_message={msg => this.conn.send(JSON.stringify({
-            cmd: 'new_message',
-            payload: msg,
-          }))}
-        />
-        <div>
-          <em>
-            <a href={sourceLink}>Source code</a>
-          </em>
+      <div style={theBiggestContainer}>
+        <div style={mainContainer}>
+          <StatusBar
+            my_style={statusBarStyle}
+            users={this.state.usersNumber}
+            sourceCodeStyle={sourceCode}
+            programmersOnlineStyle={programmersOnline}
+          />
+          <ChatHistory
+            my_style={chatHistoryStyle}
+            messages={this.state.msgs}
+          />
+          <MsgInput
+            my_style={buttonStyle}
+            name_style={nameInput}
+            message_style={messageInput}
+            send_message={msg => this.conn.send(JSON.stringify({
+              cmd: 'new_message',
+              payload: msg,
+            }))}
+          />
         </div>
       </div>
     );
   }
-
 }
 
 ReactDOM.render(<ChatApp />, document.getElementById('react-container'));
