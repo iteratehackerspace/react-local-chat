@@ -35,6 +35,10 @@
     "webpack": "^1.13.2"
   },
   "eslintConfig": {
+    "env":{
+      "browser":true,
+      "node":true
+    },
     "extends": "airbnb",
     "installedESLint": true,
     "plugins": [
