@@ -58,7 +58,11 @@ webSocketServer.on('connection', (ws) => {
           payload: clientReply.payload,
         });
         webSocketServer.clients.forEach((client) => {
-          client.send(sendMeOff);
+	  try {
+            client.send(sendMeOff);
+	  } catch (e) {
+	    console.error('Tried writing to a closed socket', e);
+	  }
         });
         break;
       default:
