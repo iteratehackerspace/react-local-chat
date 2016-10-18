@@ -137,6 +137,7 @@ class ChatApp extends React.Component {
       fontSize: '18px',
       transition: 'box-shadow 0.3s, border 0.3s',
       border: 'solid 1px #707070',
+      width:'40%',
       boxShadow: '0 0 5px 1px #969696',
     };
     // const task_window_style = {
