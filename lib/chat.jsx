@@ -56,7 +56,7 @@ class ChatApp extends React.Component {
       backgroundPosition: 'botton left',
       backgroundAttachment: 'fixed',
       backgroundSize: 'cover',
-      height: '100%',
+      height: '100vh',
     };
     const programmersOnline = {
       flexGrow: '1',
@@ -99,11 +99,12 @@ class ChatApp extends React.Component {
     };
     const chatHistoryStyle = {
       container: {
+	marginTop:'2em',
         marginLeft: '5px',
         marginRight: '5px',
-        minHeight: '300px',
+        minHeight: '20%',
         overflowY: 'scroll',
-        height: '50%',
+	maxHeight:'60%'
       },
       list_items: {
         listStyleType: 'none',
