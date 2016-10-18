@@ -17,8 +17,8 @@ class MsgInput extends React.Component {
       const now = (new Date()).toLocaleTimeString();
       const newMessage = `${this.state.username}[${now}]:${this.state.msg}`;
 
-      this.props.send_message(newMessage);
-      this.setState({ username: this.state.username, msg: '' });
+      this.props.sendMessage(newMessage);
+      this.setState({ ...this.state, msg: '' });
     }
   }
 
@@ -34,31 +34,30 @@ class MsgInput extends React.Component {
 
   render() {
     const styling = {
-      position:'absolute',
-      bottom:0,
-      width:'100%',
-      padding:'1em 1em 1em 1em'
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
     };
     return (
       <div style={styling}>
         <input
-          type={"text"}
+          type={'text'}
           onChange={this.formChanged2}
           value={this.state.username}
-          placeholder={"Your Name"}
-          style={this.props.name_style}
+          placeholder={'Your Name'}
+          style={this.props.nameStyle}
         />
         <input
-          type={"text"}
+          type={'text'}
           onChange={this.formChanged}
           value={this.state.msg}
           onKeyDown={this.clickHandler}
           placeholder={"Message"}
-          style={this.props.message_style}
+          style={this.props.messageStyle}
         />
-        <button onClick={this.clickHandler} style={this.props.my_style}>
+        <button onClick={this.clickHandler} style={this.props.myStyle}>
           Send
-        </button>
+      </button>
       </div>
     );
   }

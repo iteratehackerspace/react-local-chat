@@ -22,14 +22,14 @@ class ChatHistory extends React.Component {
   render() {
     const messageList = this.props.messages.map((message, idx) => {
       return (
-        <li key={idx} style={this.props.my_style.list_items}>
+        <li key={idx} style={this.props.myStyle.list_items}>
           {message}
         </li>
       );
     });
 
     return (
-      <div ref={'chat_container'} style={this.props.my_style.container}>
+      <div ref={'chat_container'} style={this.props.myStyle.container}>
         {messageList}
       </div>
     );

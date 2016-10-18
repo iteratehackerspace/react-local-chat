@@ -24,7 +24,7 @@ class ChatApp extends React.Component {
           this.setState({ msgs: reply.payload });
           break;
         case 'new_chat_message':
-          this.setState({ msgs: this.state.msgs.concat([reply.payload]) });
+          this.setState({ msgs: [...this.state.msgs, reply.payload] });
           break;
         default:
           console.error('Unknown message reply type from server');
@@ -52,10 +52,12 @@ class ChatApp extends React.Component {
   render() {
     const theBiggestContainer = {
       backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/cd/Tatev_Monastery_from_a_distance.jpg')",
-      backgroundRepeat: 'repeat',
-      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'botton left',
+      backgroundAttachment: 'fixed',
       backgroundSize: 'cover',
-      height:'100vh',
+      height: '100vh',
+      width: '100%',
     };
     const programmersOnline = {
       flexGrow: '1',
@@ -65,6 +67,7 @@ class ChatApp extends React.Component {
       textAlign: 'center',
       textDecoration: 'none',
       display: 'inline-block',
+      textAlign: 'right',
     };
     const sourceCode = {
       flexGrow: '1',
@@ -91,14 +94,14 @@ class ChatApp extends React.Component {
       logo: {
         postition: 'relative',
         left: '5px',
-        margin: '2px',
+        margin: '0',
       },
     };
     const chatHistoryStyle = {
       container: {
         marginLeft: '5px',
         marginRight: '5px',
-	maxHeight:'450px',
+        maxHeight: '650px',
         overflowY: 'scroll',
       },
       list_items: {
@@ -122,7 +125,7 @@ class ChatApp extends React.Component {
       color: 'white',
       justifyContent: 'center',
       borderRadius: '5px',
-      width: '97%',
+      width: '100%',
     };
     const nameInput = {
       fontFamily: 'sans-serif',
@@ -137,7 +140,7 @@ class ChatApp extends React.Component {
       fontSize: '18px',
       transition: 'box-shadow 0.3s, border 0.3s',
       border: 'solid 1px #707070',
-      width:'40%',
+      width:'99.7%',
       boxShadow: '0 0 5px 1px #969696',
     };
     // const task_window_style = {
@@ -154,20 +157,20 @@ class ChatApp extends React.Component {
       <div style={theBiggestContainer}>
         <div style={mainContainer}>
           <StatusBar
-            my_style={statusBarStyle}
+            myStyle={statusBarStyle}
             users={this.state.usersNumber}
             sourceCodeStyle={sourceCode}
             programmersOnlineStyle={programmersOnline}
           />
           <ChatHistory
-            my_style={chatHistoryStyle}
+            myStyle={chatHistoryStyle}
             messages={this.state.msgs}
           />
           <MsgInput
-            my_style={buttonStyle}
-            name_style={nameInput}
-            message_style={messageInput}
-            send_message={msg => this.conn.send(JSON.stringify({
+            myStyle={buttonStyle}
+            nameStyle={nameInput}
+            messageStyle={messageInput}
+            sendMessage={msg => this.conn.send(JSON.stringify({
               cmd: 'new_message',
               payload: msg,
             }))}
