@@ -13,7 +13,7 @@ class MsgInput extends React.Component {
 
   clickHandler(event) {
     if ((event.button === 0 || event.key === 'Enter') &&
-    this.state.msg !== '' && this.state.username !== '') {
+    this.state.msg.trim() !== '' && this.state.username.trim() !== '') {
       const now = (new Date()).toLocaleTimeString();
       const newMessage = `${this.state.username}[${now}]:${this.state.msg}`;
 
@@ -31,7 +31,7 @@ class MsgInput extends React.Component {
     const letter = e.currentTarget.value;
     this.setState({ msg: letter, username: this.state.username });
   }
-  
+
   render() {
     const styling = {
       position:'absolute',
