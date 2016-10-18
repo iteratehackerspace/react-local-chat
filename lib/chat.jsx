@@ -101,9 +101,9 @@ class ChatApp extends React.Component {
       container: {
         marginLeft: '5px',
         marginRight: '5px',
-        minHeight: '450px',
+        minHeight: '300px',
         overflowY: 'scroll',
-        height: '70%',
+        height: '50%',
       },
       list_items: {
         listStyleType: 'none',
