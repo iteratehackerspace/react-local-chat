@@ -55,7 +55,7 @@ class ChatApp extends React.Component {
       backgroundRepeat: 'repeat',
       backgroundPosition: 'center',
       backgroundSize: 'cover',
-      height: '896px',
+      height:'100vh',
     };
     const programmersOnline = {
       flexGrow: '1',
@@ -77,10 +77,8 @@ class ChatApp extends React.Component {
     };
     const mainContainer = {
       marginTop: '10px',
-      minWidth: '1024px',
-      height: '900px',
+      // height: '900px',
       margin: '0px auto',
-      width: '100%',
     };
     const statusBarStyle = {
       color: '#00ff9f',
@@ -100,7 +98,7 @@ class ChatApp extends React.Component {
       container: {
         marginLeft: '5px',
         marginRight: '5px',
-        height: '74%',
+	maxHeight:'450px',
         overflowY: 'scroll',
       },
       list_items: {
@@ -122,26 +120,21 @@ class ChatApp extends React.Component {
       border: 'none',
       height: '1.5rem',
       color: 'white',
-      margin: '.25rem',
       justifyContent: 'center',
       borderRadius: '5px',
-      width: '100%',
+      width: '97%',
     };
     const nameInput = {
       fontFamily: 'sans-serif',
-      width: '7.5%',
-      paddingLeft: '5px',
       transition: 'box-shadow 0.3s, border 0.3s',
       border: 'solid 1px #707070',
       fontSize: '12px',
       boxShadow: '0 0 5px 1px #969696',
     };
     const messageInput = {
-      width: '100%',
       display: 'block',
       fontFamily: 'sans-serif',
       fontSize: '18px',
-      paddingLeft: '5px',
       transition: 'box-shadow 0.3s, border 0.3s',
       border: 'solid 1px #707070',
       boxShadow: '0 0 5px 1px #969696',
