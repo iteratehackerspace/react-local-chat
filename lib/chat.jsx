@@ -56,8 +56,7 @@ class ChatApp extends React.Component {
       backgroundPosition: 'botton left',
       backgroundAttachment: 'fixed',
       backgroundSize: 'cover',
-      height: '100vh',
-      width: '100%',
+      height: '100%',
     };
     const programmersOnline = {
       flexGrow: '1',
@@ -82,6 +81,7 @@ class ChatApp extends React.Component {
       marginTop: '10px',
       // height: '900px',
       margin: '0px auto',
+      height: '100%',
     };
     const statusBarStyle = {
       color: '#00ff9f',
@@ -101,8 +101,9 @@ class ChatApp extends React.Component {
       container: {
         marginLeft: '5px',
         marginRight: '5px',
-        maxHeight: '650px',
+        minHeight: '450px',
         overflowY: 'scroll',
+        height: '70%',
       },
       list_items: {
         listStyleType: 'none',
