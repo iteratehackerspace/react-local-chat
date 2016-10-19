@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {findWord, firstAnswerToClient, restaurantAnswerToClient} from './bot1';
 export default
 class MsgInput extends React.Component {
 
@@ -8,7 +8,7 @@ class MsgInput extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.formChanged = this.formChanged.bind(this);
     this.formChanged2 = this.formChanged2.bind(this);
-    this.state = { msg: '', username: '' };
+    this.state = { msg: '', username: '', prevMsg: '' };
   }
 
   clickHandler(event) {
@@ -18,7 +18,14 @@ class MsgInput extends React.Component {
       const newMessage = `${this.state.username}[${now}]:${this.state.msg}`;
 
       this.props.sendMessage(newMessage);
-      this.setState({ ...this.state, msg: '' });
+      if(findWord(this.state.msg,'!hyebot:')){
+        if(findWord(this.state.prevMsg, 'restaurant') || findWord(this.state.prevMsg, 'cafe')){
+          this.props.sendMessage('Hyebot:' + restaurantAnswerToClient(this.state.msg));
+        }else{
+          this.props.sendMessage('Hyebot:' + firstAnswerToClient(this.state.msg));
+        }
+      }
+      this.setState({ prevMsg: this.state.msg, msg: '' });
     }
   }
 
