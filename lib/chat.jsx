@@ -50,14 +50,14 @@ class ChatApp extends React.Component {
   }
 
   render() {
-    const theBiggestContainer = {
-      backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/cd/Tatev_Monastery_from_a_distance.jpg')",
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'botton left',
-      backgroundAttachment: 'fixed',
-      backgroundSize: 'cover',
-      height: '100vh',
-    };
+    // const theBiggestContainer = {
+    //   backgroundImage: "url('https://upload.wikimedia.org/wikipedia/commons/c/cd/Tatev_Monastery_from_a_distance.jpg')",
+    //   backgroundRepeat: 'no-repeat',
+    //   backgroundPosition: 'botton left',
+    //   backgroundAttachment: 'fixed',
+    //   backgroundSize: 'cover',
+    //   height: '100vh',
+    // };
     const programmersOnline = {
       flexGrow: '1',
       fontSize: '30px',
@@ -73,7 +73,7 @@ class ChatApp extends React.Component {
       fontSize: '30px',
       color: 'white',
       padding: '14px 25px',
-      textAlign: 'center',
+      textAlign: 'left',
       textDecoration: 'none',
       display: 'inline-block',
     };
@@ -81,7 +81,7 @@ class ChatApp extends React.Component {
       marginTop: '10px',
       // height: '900px',
       margin: '0px auto',
-      height: '100%',
+      height: '100vh',
     };
     const statusBarStyle = {
       color: '#00ff9f',
@@ -92,19 +92,18 @@ class ChatApp extends React.Component {
       display: 'flex',
       opacity: '0.7',
       logo: {
-        postition: 'relative',
-        left: '5px',
-        margin: '0',
+        height: '6em',
+        width: '6em',
       },
     };
     const chatHistoryStyle = {
       container: {
-	marginTop:'2em',
+        marginTop:'2em',
         marginLeft: '5px',
         marginRight: '5px',
         minHeight: '20%',
         overflowY: 'scroll',
-	maxHeight:'60%'
+        maxHeight:'60%'
       },
       list_items: {
         listStyleType: 'none',
@@ -117,6 +116,16 @@ class ChatApp extends React.Component {
         maxWidth: '50%',
         backgroundColor: '#6641a7',
         opacity: '0.85',
+        // message: {
+        //   flexGrow: '6',
+        //   display: 'inline-block',
+        //   textAlign: 'left',
+        // }
+        // time: {
+        //   flexGrow: '1',
+        //   display: 'inline-block',
+        //   textAlign: 'right',
+        // }
       },
     };
 
@@ -156,7 +165,7 @@ class ChatApp extends React.Component {
     //     borderRadius: '40px'
     // };
     return (
-      <div style={theBiggestContainer}>
+      //<div style={theBiggestContainer}>
         <div style={mainContainer}>
           <StatusBar
             myStyle={statusBarStyle}
@@ -179,7 +188,7 @@ class ChatApp extends React.Component {
             }))}
           />
         </div>
-      </div>
+      //</div>
     );
   }
 }
