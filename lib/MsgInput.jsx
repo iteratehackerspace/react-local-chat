@@ -17,7 +17,7 @@ class MsgInput extends React.Component {
       const now = (new Date()).toLocaleTimeString();
       const newMessage = `${this.state.username}[${now}]:${this.state.msg}`;
 
-      this.props.sendMessage(newMessage);
+      this.props.sendMessage(newMessage, this.state.msg);
       this.setState({ ...this.state, msg: '' });
     }
   }

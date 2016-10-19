@@ -172,9 +172,10 @@ class ChatApp extends React.Component {
             myStyle={buttonStyle}
             nameStyle={nameInput}
             messageStyle={messageInput}
-            sendMessage={msg => this.conn.send(JSON.stringify({
+            sendMessage={(msg, rawMsg) => this.conn.send(JSON.stringify({
               cmd: 'new_message',
               payload: msg,
+              rawMessage:rawMsg,
             }))}
           />
         </div>

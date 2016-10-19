@@ -27,7 +27,6 @@ class ChatHistory extends React.Component {
         </li>
       );
     });
-
     return (
       <div ref={'chat_container'} style={this.props.myStyle.container}>
         {messageList}
