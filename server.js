@@ -73,7 +73,7 @@ webSocketServer.on('connection', (ws) => {
 		if (e)
 		  client.send(JSON.stringify({
 		    message_type:'new_chat_message',
-		    payload:`Watson messed up ${e.message}`
+		    payload:`Watson messed up ${JSON.stringify(e)}`
 		  }));
 		else {
 		const bot_message =
