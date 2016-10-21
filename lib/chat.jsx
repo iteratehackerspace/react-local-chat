@@ -4,7 +4,6 @@ import MsgInput from './MsgInput';
 import StatusBar from './StatusBar';
 import ChatHistory from './chathistory';
 import { webSocketAddr } from './globals';
-
 class ChatApp extends React.Component {
 
   constructor() {
@@ -86,7 +85,7 @@ class ChatApp extends React.Component {
     const statusBarStyle = {
       color: '#00ff9f',
       textAlign: 'center',
-      backgroundColor: '#acb2ff',
+      backgroundColor: '#000000',
       marginLeft: 'auto',
       marginRight: 'auto',
       display: 'flex',
@@ -97,13 +96,36 @@ class ChatApp extends React.Component {
       },
     };
     const chatHistoryStyle = {
+      middleStyle: {
+        display: 'flex',
+      },
+      botton: {
+        backgroundColor: '#4CAF50',
+        border: 'none',
+        height: '5rem',
+        color: 'white',
+        justifyContent: 'center',
+        borderRadius: '10px',
+        width: '50%',
+        fontSize: '20',
+      },
       container: {
-        marginTop:'2em',
+        marginTop: '2em',
         marginLeft: '5px',
         marginRight: '5px',
-        minHeight: '20%',
+        minHeight: '20em',
         overflowY: 'scroll',
-        maxHeight:'60%'
+        maxHeight: '40em',
+        flexGrow: '6',
+      },
+      commandBox: {
+        flexGrow: '1',
+        textAlign: 'center',
+        backgroundColor: '#acb2ff',
+        opacity: '0.7',
+        marginTop: '2.5em',
+        borderRadius: '5px',
+        height: '39.5em',
       },
       list_items: {
         listStyleType: 'none',
@@ -114,8 +136,9 @@ class ChatApp extends React.Component {
         padding: '.50rem',
         minWidth: '30px',
         maxWidth: '50%',
-        backgroundColor: '#6641a7',
+        backgroundColor: '#000000',
         opacity: '0.85',
+        borderRadius: '10px',
         // message: {
         //   flexGrow: '6',
         //   display: 'inline-block',
@@ -130,7 +153,7 @@ class ChatApp extends React.Component {
     };
 
     const buttonStyle = {
-      backgroundColor: '#4CAF50',
+      backgroundColor: '#2eb2a2',
       border: 'none',
       height: '1.5rem',
       color: 'white',
