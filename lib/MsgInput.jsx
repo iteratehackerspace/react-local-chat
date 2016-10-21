@@ -45,7 +45,7 @@ class MsgInput extends React.Component {
           onChange={this.formChanged2}
           value={this.state.username}
           placeholder={'Your Name'}
-          style={this.props.nameStyle}
+          style={this.props.myStyle.nameInput}
         />
         <input
           type={'text'}
@@ -53,11 +53,11 @@ class MsgInput extends React.Component {
           value={this.state.msg}
           onKeyDown={this.clickHandler}
           placeholder={"Message"}
-          style={this.props.messageStyle}
+          style={this.props.myStyle.messageInput}
         />
-        <button onClick={this.clickHandler} style={this.props.myStyle}>
+        <button onClick={this.clickHandler} style={this.props.myStyle.buttonStyle}>
           Send
-      </button>
+        </button>
       </div>
     );
   }
