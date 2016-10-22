@@ -26,7 +26,7 @@ class ChatHistory extends React.Component {
       if(validator.isURL(actualMessage[1]))
         return (
           <li key={idx} style={this.props.myStyle.list_items}>
-            {actualMessage[0]}]:<a href={actualMessage[1]}>{actualMessage[1]}</a>
+            {actualMessage[0]}]:<a href={actualMessage[1]} target={'_blank'}>{actualMessage[1]}</a>
           </li>
         );
       else
