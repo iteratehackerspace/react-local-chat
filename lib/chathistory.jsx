@@ -43,3 +43,26 @@ class ChatHistory extends React.Component {
     );
   }
 }
+class CommandBox extends React.Component {
+  render() {
+    const textDec = {
+      listStyleType: 'none',
+    };
+    return (
+        <div style={this.props.myStyle.commandBox}>
+          <li style={textDec}>
+            CommandBox
+          </li>
+          <li style={textDec}>
+            <button
+              title={'Checks your mood'}
+              className={"foo"}
+              onClick={this.props.sendCmd}>
+              !hyebot.sentiment=>
+            </button>
+          </li>
+        </div>
+    );
+  }
+}
+export {ChatHistory, CommandBox};

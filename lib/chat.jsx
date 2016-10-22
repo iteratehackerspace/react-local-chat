@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
 import StatusBar from './StatusBar';
-import ChatHistory from './chathistory';
+import { ChatHistory, CommandBox } from './chathistory';
 import { webSocketAddr } from './globals';
 import { mainContainer,statusBarStyle,chatHistoryStyle,MsgInputStyle } from './styles';
 class ChatApp extends React.Component {
 
   constructor() {
     super();
-    this.state = { msgs: [], usersNumber: 0 };
+    this.state = { msgs: [], usersNumber: 0, command: '' };
     this.conn = new WebSocket(webSocketAddr);
+    this.getCommand = this.getCommand.bind(this);
+    this.cleanCommand = this.cleanCommand.bind(this);
   }
 
   componentDidMount() {
@@ -48,20 +50,32 @@ class ChatApp extends React.Component {
       }
     }, 10 * 1000);
   }
-
+  getCommand() {
+    this.setState({command: '!hyebot.sentiment=>'});
+  }
+  cleanCommand(){
+    this.setState({command: ''});
+  }
   render() {
-
     return (
         <div style={mainContainer}>
           <StatusBar
             myStyle={statusBarStyle}
             users={this.state.usersNumber}
           />
-          <ChatHistory
+        <div style={chatHistoryStyle.middleStyle}>
+        <CommandBox
             myStyle={chatHistoryStyle}
-            messages={this.state.msgs}
-          />
+            sendCmd={() => this.getCommand()}
+            />
+            <ChatHistory
+              myStyle={chatHistoryStyle}
+              messages={this.state.msgs}
+            />
+          </div>
           <MsgInput
+            com={this.state.command}
+            cleanCom={() => this.cleanCommand()}
             myStyle={MsgInputStyle}
             sendMessage={(msg, rawMsg) => this.conn.send(JSON.stringify({
               cmd: 'new_message',

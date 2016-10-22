@@ -32,12 +32,22 @@ class MsgInput extends React.Component {
     this.setState({ msg: letter, username: this.state.username });
   }
 
+
+  componentWillReceiveProps(nextProps) {
+    if(!this.state.msg.includes(nextProps.com)) {
+      this.setState({msg: `${nextProps.com}${this.state.msg}`});
+      this.props.cleanCom();
+    }
+  }
+
   render() {
     const styling = {
-      position: 'absolute',
+      position: 'fixed',
       bottom: 0,
       width: '100%',
+      flexGrow: '1',
     };
+
     return (
       <div style={styling}>
         <input
