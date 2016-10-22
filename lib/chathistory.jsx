@@ -1,4 +1,5 @@
 import React from 'react';
+import validator from 'validator'
 
 export default
 class ChatHistory extends React.Component {
@@ -21,6 +22,14 @@ class ChatHistory extends React.Component {
 
   render() {
     const messageList = this.props.messages.map((message, idx) => {
+      const actualMessage = message.split(']:');
+      if(validator.isURL(actualMessage[1]))
+        return (
+          <li key={idx} style={this.props.myStyle.list_items}>
+            {actualMessage[0]}]:<a href={actualMessage[1]}>{actualMessage[1]}</a>
+          </li>
+        );
+      else
       return (
         <li key={idx} style={this.props.myStyle.list_items}>
           {message}
