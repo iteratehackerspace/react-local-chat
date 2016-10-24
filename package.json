@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "validator": "^6.1.0",
     "watson-developer-cloud": "^2.6.1",
     "ws": "^1.1.1"
   },
