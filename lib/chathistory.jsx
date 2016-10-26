@@ -47,6 +47,7 @@ class CommandBox extends React.Component {
   render() {
     const textDec = {
       listStyleType: 'none',
+      wordWrap: 'break-word',
     };
     return (
         <div style={this.props.myStyle.commandBox}>
