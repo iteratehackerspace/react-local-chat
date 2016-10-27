@@ -23,7 +23,19 @@ class ChatHistory extends React.Component {
   render() {
     const messageList = this.props.messages.map((message, idx) => {
       const actualMessage = message.split(']:');
-      if(validator.isURL(actualMessage[1]))
+      const validatorOps = {
+        protocols: ['http','https','ftp'],
+        require_tld: true,
+        require_protocol: true,
+        require_host: true,
+        require_valid_protocol: true,
+        allow_underscores: false,
+        host_whitelist: false,
+        host_blacklist: false,
+        allow_trailing_dot: true,
+        allow_protocol_relative_urls: true,
+      };
+      if(validator.isURL(actualMessage[1], validatorOps))
         return (
           <li key={idx} style={this.props.myStyle.list_items}>
             {actualMessage[0]}]:<a href={actualMessage[1]} target={'_blank'}>{actualMessage[1]}</a>
