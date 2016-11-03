@@ -35,10 +35,14 @@ class ChatHistory extends React.Component {
         allow_trailing_dot: true,
         allow_protocol_relative_urls: true,
       };
-      if(validator.isURL(actualMessage[1], validatorOps))
+      const startingChar = actualMessage[1].indexOf('http');
+      const endingChar = actualMessage[1].indexOf(' ', startingChar);
+      const link = endingChar>0 ? actualMessage[1].substring(startingChar,endingChar) : actualMessage[1].substring(startingChar);
+      const test = actualMessage[1].split(link);
+      if(validator.isURL(link, validatorOps))
         return (
           <li key={idx} style={this.props.myStyle.list_items}>
-            {actualMessage[0]}]:<a href={actualMessage[1]} target={'_blank'}>{actualMessage[1]}</a>
+            {actualMessage[0]}]:{test[0]}<a href={link} target={'_blank'}>{link}</a>
           </li>
         );
       else
