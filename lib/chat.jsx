@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
 import StatusBar from './StatusBar';
-import { ChatHistory, CommandBox } from './chathistory';
+import { ChatHistory, CommandBox } from './ChatHistory';
 import { webSocketAddr } from './globals';
 import { mainContainer,statusBarStyle,chatHistoryStyle,MsgInputStyle } from './styles';
 class ChatApp extends React.Component {
