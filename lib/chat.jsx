@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MsgInput from './MsgInput';
 import StatusBar from './StatusBar';
-import { ChatHistory, CommandBox } from './ChatHistory';
+import { ChatHistory, CommandBox, CheatSheet } from './chathistory';
 import { webSocketAddr } from './globals';
 import { mainContainer,statusBarStyle,chatHistoryStyle,MsgInputStyle } from './styles';
 class ChatApp extends React.Component {
@@ -64,14 +64,15 @@ class ChatApp extends React.Component {
             users={this.state.usersNumber}
           />
         <div style={chatHistoryStyle.middleStyle}>
-        <CommandBox
-            myStyle={chatHistoryStyle}
-            sendCmd={() => this.getCommand()}
+            <CommandBox
+              myStyle={chatHistoryStyle}
+              sendCmd={() => this.getCommand()}
             />
             <ChatHistory
               myStyle={chatHistoryStyle}
               messages={this.state.msgs}
             />
+            <CheatSheet myStyle={chatHistoryStyle} />
           </div>
           <MsgInput
             com={this.state.command}
