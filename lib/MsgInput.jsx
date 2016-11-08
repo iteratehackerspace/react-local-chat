@@ -8,17 +8,35 @@ class MsgInput extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.formChanged = this.formChanged.bind(this);
     this.formChanged2 = this.formChanged2.bind(this);
-    this.state = { msg: '', username: '' };
+    this.state = { msg: '', username: '', prevMsg: [], currElm: 0};
   }
 
   clickHandler(event) {
+    console.log(this.state.currElm);
+    console.log(this.state.prevMsg);
     if ((event.button === 0 || event.key === 'Enter') &&
     this.state.msg.trim() !== '' && this.state.username.trim() !== '') {
       const now = (new Date()).toLocaleTimeString();
       const newMessage = `${this.state.username}[${now}]:${this.state.msg}`;
 
       this.props.sendMessage(newMessage, this.state.msg);
-      this.setState({ ...this.state, msg: '' });
+      this.setState({ ...this.state, prevMsg: [...this.state.prevMsg, this.state.msg], currElm: this.state.prevMsg.length, msg: '' });
+    }
+    if(event.key === "ArrowUp") {
+      if(this.state.currElm <= 0){
+        this.setState({...this.state, msg: this.state.prevMsg[0], currElm: 0})
+      }
+      else {
+      this.setState({...this.state, msg: this.state.prevMsg[this.state.currElm], currElm: this.state.currElm-1});
+      }
+    }
+    if(event.key === "ArrowDown") {
+      if(this.state.currElm >= this.state.prevMsg.length-1){
+        this.setState({...this.state, msg: '', currElm: this.state.prevMsg.length-1})
+      }
+      else {
+        this.setState({...this.state,  currElm: this.state.currElm+1, msg: this.state.prevMsg[this.state.currElm]})
+      }
     }
   }
 
