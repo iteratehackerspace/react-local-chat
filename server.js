@@ -1,10 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 const WebSocketServer = require('ws').Server;
-const AlchemyAPI = require('watson-developer-cloud/alchemy-language/v1');
-
-const key = process.env.ALCHEMY_KEY || null;
-const alchemy_client = key ? new AlchemyAPI({api_key:key}) : null;
+// const AlchemyAPI = require('watson-developer-cloud/alchemy-language/v1');
+// const key = process.env.ALCHEMY_KEY || null;
+// const alchemy_client = key ? new AlchemyAPI({api_key:key}) : null;
 
 let currentUsers = 0;
 const messageHistory = [];
@@ -64,30 +63,30 @@ webSocketServer.on('connection', (ws) => {
       });
       webSocketServer.clients.forEach((client) => {
 	try {
-	  if (trimmed.startsWith('!hyebot.sentiment=>')) {
-	    const analyze =
-		  {text:trimmed.split('=>')[1].trim()};
-	    if (alchemy_client) {
-	      alchemy_client.sentiment(analyze, (e, resp) => {
-		client.send(sendMeOff);
-		if (e)
-		  client.send(JSON.stringify({
-		    message_type:'new_chat_message',
-		    payload:`Watson messed up ${JSON.stringify(e)}`
-		  }));
-		else {
-		const bot_message =
-		      `{message:${trimmed}} has a score of:${resp.docSentiment.score} and its ${resp.docSentiment.type}`;
-		client.send(JSON.stringify({
-		  message_type:'new_chat_message',
-		  payload:bot_message
-		}));
-		}
-	      });
-	    }
-	  } else {
+	  // if (trimmed.startsWith('!hyebot.sentiment=>')) {
+	  //   const analyze =
+	  // 	  {text:trimmed.split('=>')[1].trim()};
+	  //   if (alchemy_client) {
+	  //     alchemy_client.sentiment(analyze, (e, resp) => {
+	  // 	client.send(sendMeOff);
+	  // 	if (e)
+	  // 	  client.send(JSON.stringify({
+	  // 	    message_type:'new_chat_message',
+	  // 	    payload:`Watson messed up ${JSON.stringify(e)}`
+	  // 	  }));
+	  // 	else {
+	  // 	const bot_message =
+	  // 	      `{message:${trimmed}} has a score of:${resp.docSentiment.score} and its ${resp.docSentiment.type}`;
+	  // 	client.send(JSON.stringify({
+	  // 	  message_type:'new_chat_message',
+	  // 	  payload:bot_message
+	  // 	}));
+	  // 	}
+	  //     });
+	  //   }
+	  // } else {
             client.send(sendMeOff);
-	  }
+	  // }
 	} catch (e) {
 	  console.error('Tried writing to a closed socket', e);
 	}
