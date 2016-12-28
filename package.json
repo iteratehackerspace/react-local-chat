@@ -1,7 +1,7 @@
 {
-  "name": "iterate-chat-app",
+  "name": "hyechat",
   "version": "0.0.1",
-  "description": "a-react-chat-app",
+  "description": "hyechat",
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -54,8 +54,9 @@
     ]
   },
   "scripts": {
-    "dev-server": "webpack-dev-server",
-    "front-end": "webpack --progress --colors",
+    "dev-server": "NODE_ENV='debug' webpack-dev-server",
+    "front-end": "NODE_ENV='debug' webpack --progress --colors -d",
+    "prod": "NODE_ENV='production' webpack --progress --colors -p",
     "lint": "eslint server.js lib/**"
   },
   "author": "Edgar Aroutiounian <edgar.factorial@gmail.com>",
