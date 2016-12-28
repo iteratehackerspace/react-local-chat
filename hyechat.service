@@ -1,0 +1,14 @@
+[Unit]
+Description=yerevancoder.com
+
+[Service]
+ExecStart=/usr/bin/node /home/gar/hyechat/server.js 
+Restart=always
+User=nobody
+Group=nobody
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/gar/hyechat
+
+[Install]
+WantedBy=multi-user.target
