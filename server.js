@@ -8,7 +8,7 @@ const WebSocketServer = require('ws').Server;
 let currentUsers = 0;
 const messageHistory = [];
 
-const port = 8080;
+const port = process.env.NODE_ENV === 'debug' ? 8080 : 80;
 
 // Basic HTTP httpServer
 const httpServer = http.createServer((req, res) => {
