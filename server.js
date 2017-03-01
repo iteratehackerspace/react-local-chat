@@ -8,29 +8,30 @@ const WebSocketServer = require('ws').Server;
 let currentUsers = 0;
 const messageHistory = [];
 
-const port = process.env.NODE_ENV === 'debug' ? 8080 : 80;
+const port = process.env.PORT || 80;
 
 // Basic HTTP httpServer
 const httpServer = http.createServer((req, res) => {
   switch (req.url) {
-  case '/':
-    fs.readFile('public/index.html',
-		'utf-8',
-		(err, data) => res.end(data));
-    break;
-  case '/logo.png':
-    fs.readFile('public/logo.png', (err, data) => res.end(data));
-    break;
-  case '/bundle.js':
-    fs.readFile('public/bundle.js',
-		'utf-8',
-		(err, data) => res.end(data));
-    break;
-  default: res.end();
+    case '/':
+      fs.readFile('public/index.html',
+        'utf-8',
+        (err, data) => res.end(data));
+      break;
+    case '/logo.png':
+      fs.readFile('public/logo.png', (err, data) => res.end(data));
+      break;
+    case '/bundle.js':
+      fs.readFile('public/bundle.js',
+        'utf-8',
+        (err, data) => res.end(data));
+      break;
+    default:
+      res.end();
   }
 });
 
-const webSocketServer = new WebSocketServer({ server: httpServer });
+const webSocketServer = new WebSocketServer({server: httpServer});
 
 webSocketServer.on('connection', (ws) => {
   const payload = {
@@ -40,6 +41,10 @@ webSocketServer.on('connection', (ws) => {
 
   // Initial history
   ws.send(JSON.stringify(payload));
+
+  ws.on('open', () => {
+    console.log("Opening a connection...");
+  });
 
   ws.on('message', (msg) => {
     const clientReply = JSON.parse(msg);
@@ -100,8 +105,12 @@ webSocketServer.on('connection', (ws) => {
   ws.on('close', () => {
     currentUsers--;
   });
+
+  ws.on('error', (evt) => {
+    console.log("ERR: " + evt.data);
+  });
 });
 
 httpServer.listen(port, () =>
-		  console.log(`Server started on port:${port}, check localhost:${port}`)
-		 );
+  console.log(`Server started on port:${port}, check localhost:${port}`)
+);

@@ -54,9 +54,10 @@
     ]
   },
   "scripts": {
+    "start": "npm run prod",
     "dev-server": "NODE_ENV='debug' webpack-dev-server",
     "front-end": "NODE_ENV='debug' webpack --progress --colors -d",
-    "prod": "NODE_ENV='production' webpack --progress --colors -p",
+    "prod": "NODE_ENV='production' webpack --progress --colors -p && node server.js",
     "lint": "eslint server.js lib/**"
   },
   "author": "Edgar Aroutiounian <edgar.factorial@gmail.com>",

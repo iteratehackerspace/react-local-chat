@@ -1,5 +1,4 @@
 import React from 'react';
-import { serverAddress } from './globals';
 
 export default
 class StatusBar extends React.Component {
@@ -18,7 +17,7 @@ class StatusBar extends React.Component {
             <a href={'https://iteratehackerspace.github.io'} >
               <img
                 style={this.props.myStyle.logo}
-                src={`${serverAddress}/logo.png`}
+                src="/logo.png"
                 width={'150'} alt={'Logo'}
               />
             </a>

@@ -12,8 +12,6 @@ class MsgInput extends React.Component {
   }
 
   clickHandler(event) {
-    console.log(this.state.currElm);
-    console.log(this.state.prevMsg);
     if ((event.button === 0 || event.key === 'Enter') &&
     this.state.msg.trim() !== '' && this.state.username.trim() !== '') {
       const now = (new Date()).toLocaleTimeString();
