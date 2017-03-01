@@ -1,3 +1,12 @@
+# Bundle file
+public/bundle.js.map
+
+# WebStorm
+.idea
+
+# Yarn lock file
+yarn.lock
+
 # Logs
 logs
 *.log

@@ -10,6 +10,9 @@
     "watson-developer-cloud": "^2.6.1",
     "ws": "^1.1.1"
   },
+  "engines": {
+    "node": ">=7.5.0"
+  },
   "babel": {
     "presets": [
       "react",
@@ -54,6 +57,8 @@
     ]
   },
   "scripts": {
+    "start": "node server.js",
+    "postinstall": "npm run front-end",
     "dev-server": "NODE_ENV='debug' webpack-dev-server",
     "front-end": "NODE_ENV='debug' webpack --progress --colors -d",
     "prod": "NODE_ENV='production' webpack --progress --colors -p",
