@@ -10,6 +10,9 @@
     "watson-developer-cloud": "^2.6.1",
     "ws": "^1.1.1"
   },
+  "engines": {
+    "node": ">=7.5.0"
+  },
   "babel": {
     "presets": [
       "react",
