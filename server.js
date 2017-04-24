@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const WebSocketServer = require('ws').Server;
+const xss = require('xss');
 // const AlchemyAPI = require('watson-developer-cloud/alchemy-language/v1');
 // const key = process.env.ALCHEMY_KEY || null;
 // const alchemy_client = key ? new AlchemyAPI({api_key:key}) : null;
@@ -60,6 +61,7 @@ webSocketServer.on('connection', (ws) => {
       }));
       break;
     case 'new_message':
+      clientReply.payload = xss(clientReply.payload);
       messageHistory.push(clientReply.payload);
       const trimmed = clientReply.rawMessage.trim();
       const sendMeOff = JSON.stringify({
