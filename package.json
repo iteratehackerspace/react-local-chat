@@ -8,7 +8,8 @@
     "react-remarkable": "^1.1.1",
     "validator": "^6.1.0",
     "watson-developer-cloud": "^2.6.1",
-    "ws": "^1.1.1"
+    "ws": "^1.1.1",
+    "xss": "^0.3.3"
   },
   "engines": {
     "node": ">=7.5.0"
